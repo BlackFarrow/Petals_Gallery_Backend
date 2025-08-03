@@ -1,5 +1,5 @@
 import express from 'express';
-import dotenv from 'dotenv';
+
 import cors from 'cors';
 import { connectDB } from './config/db.js';
 
@@ -15,6 +15,10 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('API is running with import/export');
 });
+
+// Import routes
+import serviceRoutes from './routes/serviceRoute.js';
+app.use('/api/services', serviceRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
