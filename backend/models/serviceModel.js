@@ -1,19 +1,35 @@
-import mongoose from 'mongoose';
+// backend/models/serviceModel.js
+import mongoose from "mongoose";
 
-const serviceSchema = new mongoose.Schema({
-  type: {
-    type: String,
-    enum: ['photography', 'videography'],
-    required: true,
+const serviceSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: String, // You can change this to Number if you want to work with raw numbers
+      required: true,
+    },
+    tags: {
+      type: [String],
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+      enum: ["photography", "videography"], // Add more if needed
+    },
   },
-  title: {
-    type: String,
-    required: true,
-  },
-  description: String,
-  price: String,
-  tags: [String],
-}, { timestamps: true });
+  {
+    timestamps: true,
+  }
+);
 
-const Service = mongoose.model('Service', serviceSchema);
+const Service = mongoose.model("Service", serviceSchema);
+
 export default Service;
